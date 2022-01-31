@@ -1,0 +1,72 @@
+class Lab1 { 
+
+    public static void showMaxima(int [] array) { 
+	// implement 
+
+        /* here, there is three main situations,
+                      1) last element is larger than before element
+                      2) last element is amaller than before
+                      3) last two elements are same     */
+
+
+    	int n=array.length;         //Get the length of the array
+        int sum=0;
+        
+        if(array[n-1]>array[n-2]){  //****************************************skip if last element of array is larger than privious one**********************************
+        }
+        else if(array[n-1]<array[n-2]){      //*******************************if last elemet is smaller than privious one************************************************
+      
+            for(int i=1;i<n;i++){
+                if(array[i]>array[i-1] && array[i]>=array[i+1]){
+                    if(array[i]==array[i-1] || array[i]==array[i+1]){   //If there is same elements together we go until the endof same numbers and check wether the right after next number is smaller
+                        while(array[i]==array[i+1]){           //going until the end of the sequence of same numbers
+                            if(i+1==n-1){
+                                break;
+                            }
+                            i++;
+                        }
+                         if(array[i]>array[i+1]){               // if the next number is small print it
+                            System.out.printf("%d  ",array[i]);
+                        }
+                        sum++;
+                    }
+                    else{
+                        System.out.printf("%d  ",array[i]);  //Print Local maxima
+                        sum++;
+                    }
+                }
+            }
+        }
+        else if(array[n-1]==array[n-2]){                     //**************************If the last two elements are same******************************************
+            for(int i=1;i<n-1;i++){                          //here we did the same thing as before
+                if(array[i]>array[i-1] && array[i]>=array[i+1]){
+                    if(array[i]==array[i-1] || array[i]==array[i+1]){
+                        while(array[i]==array[i+1]){
+                            if(i+1==n-1){
+                                break;
+                            }
+                            i++;
+                        }
+                        if(array[i]>array[i+1]){
+                            System.out.printf("%d  ",array[i]);
+                        }
+                        sum++;
+                    }
+                    else{
+                        System.out.printf("%d  ",array[i]);
+                        sum++;
+                    }
+                }
+            }
+        }
+        
+        if(sum==0){
+            System.out.println("There is no Local Maxima");     //***********************************If there is no Local Maxima*************************************
+        }
+    }
+
+    public static void main(String [] args) { 
+	int [] array = {0, 1, 2, 1, 0, -1, 2, 3, 5, 6, 7, 4, 3, 4, 6, 5, 4};
+	showMaxima(array);
+    }
+}
